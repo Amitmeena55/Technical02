@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Technical 01 by Aman Meena - Complete Website with About, Privacy Policy and all pages">
+    <title>Technical 01 - Complete Website</title>
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Open+Sans:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #ff6b4a 0%, #ff8a65 50%, #ffab91 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .header {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            background: #ff6b4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff6b4a;
+        }
+        .page {
+            display: none;
+            padding-top: 100px;
+        }
+        .page.active {
+            display: block;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+        }
+        .hero-content {
+            color: white;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #ff6b4a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .btn.primary {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+        }
+        .about-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        .profile-section {
+            text-align: center;
+            animation: slideInLeft 1s ease-out;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .profile-ring {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 4px dashed white;
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            color: white;
+            animation: slideInRight 1s ease-out;
+            text-align: left;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .info-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .info-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: white;
+            color: #ff6b4a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        .social-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .feature-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+        .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        .feature-card:nth-child(4) { animation-delay: 0.8s; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .channel-info {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .channel-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ff6b4a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .channel-info p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .channel-info ul {
+            color: #555;
+            line-height: 2;
+            margin-left: 20px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f3 0%, #ffe8e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b4a;
+            margin: 20px 0;
+        }
+        .highlight-box h4 {
+            color: #ff6b4a;
+            margin-bottom: 10px;
+        }
+        .policy-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        .policy-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .policy-content {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .policy-section {
+            margin-bottom: 35px;
+        }
+        .policy-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ff6b4a;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ffe8e3;
+        }
+        .policy-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .policy-section ul {
+            color: #555;
+            line-height: 2;
+            margin-left: 25px;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, #ff6b4a 0%, #ff8a65 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .contact-box h3 {
+            margin-bottom: 15px;
+        }
+        .contact-box p {
+            color: white;
+            margin-bottom: 15px;
+        }
+        .contact-box a {
+            display: inline-block;
+            background: white;
+            color: #ff6b4a;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .last-updated {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        .footer a {
+            color: #ff6b4a;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .hero-content h1, .info-section h1 {
+                font-size: 2rem;
+            }
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+            .header {
+                padding: 10px 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+            .policy-content, .channel-info {
+                padding: 30px 20px;
+            }
+            .info-section {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">TECH 01</div>
+        <nav class="nav-links">
+            <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+            <a onclick="showPage('about')" id="nav-about">About</a>
+            <a onclick="showPage('privacy')" id="nav-privacy">Privacy Policy</a>
+        </nav>
+    </header>
+
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Technical 01</h1>
+                    <p>Welcome to Technical 01 by Aman Meena. Yahan aapko milenge latest tech projects, innovative gadgets, aur step-by-step DIY tutorials jo technology ko aasaan banate hain!</p>
+                    <a href="https://instagram.com/_technical_01" target="_blank" class="btn">Instagram</a>
+                    <a href="https://whatsapp.com/channel/0029VaDFCbF9hXFDBUx8fe3E" target="_blank" class="btn primary">WhatsApp Channel</a>
+                </div>
+            </div>
+            <div class="features-section">
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Video Tutorials</h3>
+                    <p>Step-by-step video tutorials jo aapko har project samjhne mein madad karte hain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>DIY Projects</h3>
+                    <p>Creative projects jo aap ghar par bana sakte hain. Electronics se robotics tak!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Gadget Reviews</h3>
+                    <p>Latest gadgets ki honest reviews aur unboxing videos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Free Resources</h3>
+                    <p>Circuit diagrams, codes aur links WhatsApp channel par FREE available hain.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="page">
+        <div class="container">
+            <div class="about-hero">
+                <div class="profile-section">
+                    <div class="profile-img-container">
+                        <div class="profile-ring"></div>
+                        <img src="images/aman-meena.jpg" alt="Aman Meena" class="profile-img" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22><rect fill=%22%23ff6b4a%22 width=%22280%22 height=%22280%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2260%22>AM</text></svg>'">
+                    </div>
+                </div>
+                <div class="info-section">
+                    <h1>Aman Meena</h1>
+                    <p class="tagline">Founder & Creator - Technical 01</p>
+                    <p>Namaste! Main Aman Meena hoon aur main <strong>Technical 01</strong> Instagram channel chalata hoon. Mere channel par aapko latest tech projects, innovative gadgets, aur DIY tutorials milte hain.</p>
+                    <p>Mera mission hai technology ko simple aur accessible banana har kisi ke liye. Video ke madhyam se projects aur gadgets ke baare mein batata hoon. Pura project ki link WhatsApp channel par milti hai!</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/_technical_01" class="social-btn instagram" target="_blank">📸 Instagram</a>
+                        <a href="https://whatsapp.com/channel/0029VaDFCbF9hXFDBUx8fe3E" class="social-btn whatsapp" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="features-section">
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Video Tutorials</h3>
+                    <p>Step-by-step video tutorials jo aapko har project ko samajhne mein madad karte hain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>DIY Projects</h3>
+                    <p>Creative aur innovative DIY projects jo aap ghar par bana sakte hain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Gadget Reviews</h3>
+                    <p>Latest gadgets ki honest reviews aur unboxing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Project Links</h3>
+                    <p>Sabhi projects ke circuit diagrams, codes WhatsApp channel par available hain.</p>
+                </div>
+            </div>
+            <div class="channel-info">
+                <h2>Technical 01 Channel Ke Baare Mein</h2>
+                <p>Technical 01 ek educational tech channel hai jahan main Aman Meena aapke liye latest technology, electronics projects, aur innovative gadgets ke baare mein videos banata hoon.</p>
+                <div class="highlight-box">
+                    <h4>🎯 Channel Ka Mission</h4>
+                    <p>Technology ko har kisi ke liye accessible banana. Complicated concepts ko simple words mein explain karna.</p>
+                </div>
+                <p><strong>Kya Milega Aapko:</strong></p>
+                <ul>
+                    <li>Electronics aur IoT Projects ki complete tutorials</li>
+                    <li>Arduino, Raspberry Pi aur microcontroller projects</li>
+                    <li>Latest tech gadgets ki reviews aur unboxing</li>
+                    <li>School aur college projects ke ideas</li>
+                    <li>Circuit diagrams aur source codes (WhatsApp channel par)</li>
+                </ul>
+                <div class="highlight-box">
+                    <h4>📲 WhatsApp Channel</h4>
+                    <p>Hamare WhatsApp channel par join karein - project files, circuit diagrams, codes, aur direct support FREE!</p>
+                </div>
+                <p style="text-align: center; margin-top: 30px;">
+                    <a href="https://whatsapp.com/channel/0029VaDFCbF9hXFDBUx8fe3E" class="social-btn whatsapp" target="_blank">💬 WhatsApp Channel Join Karein</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacy" class="page">
+        <div class="container">
+            <div class="policy-header">
+                <h1>🔒 Privacy Policy</h1>
+                <p>Aapki privacy hamari priority hai</p>
+            </div>
+            <div class="policy-content">
+                <div class="policy-section">
+                    <h2>Introduction (Parichay)</h2>
+                    <p>Technical 01 website par aapka swagat hai! Ye Privacy Policy batati hai ki hum aapki personal information ko kaise collect, use, aur protect karte hain.</p>
+                </div>
+                <div class="policy-section">
+                    <h2>Information Collection</h2>
+                    <p>Hum following types ki information collect kar sakte hain:</p>
+                    <ul>
+                        <li><strong>Personal Information:</strong> Naam, email address, phone number (jab aap contact karte hain)</li>
+                        <li><strong>Usage Data:</strong> Website visit ki information</li>
+                        <li><strong>Device Information:</strong> Device type, operating system</li>
+                        <li><strong>Cookies:</strong> Website experience improve karne ke liye</li>
+                    </ul>
+                </div>
+                <div class="policy-section">
+                    <h2>Information Use</h2>
+                    <ul>
+                        <li>Website ko operate aur maintain karne ke liye</li>
+                        <li>Aapke queries ka response dene ke liye</li>
+                        <li>Website experience ko improve karne ke liye</li>
+                        <li>New content ke baare mein inform karne ke liye</li>
+                    </ul>
+                </div>
+                <div class="policy-section">
+                    <h2>Data Security</h2>
+                    <p>Aapki personal information ki security hamare liye important hai. Hum appropriate security measures use karte hain.</p>
+                    <div class="highlight-box">
+                        <p>⚠️ Koi bhi internet transmission 100% secure nahi hai. Hum commercially acceptable means use karte hain aapki information protect karne ke liye.</p>
+                    </div>
+                </div>
+                <div class="policy-section">
+                    <h2>Third-Party Services</h2>
+                    <ul>
+                        <li><strong>Instagram:</strong> Social media integration</li>
+                        <li><strong>WhatsApp:</strong> Communication channel</li>
+                        <li><strong>Google Fonts:</strong> Typography</li>
+                    </ul>
+                </div>
+                <div class="policy-section">
+                    <h2>Your Rights</h2>
+                    <ul>
+                        <li>Personal information access karne ka adhikaar</li>
+                        <li>Galat information correct karwane ka adhikaar</li>
+                        <li>Information delete karwane ka adhikaar</li>
+                        <li>Marketing se opt-out karne ka adhikaar</li>
+                    </ul>
+                </div>
+                <div class="contact-box">
+                    <h3>📧 Contact Us</h3>
+                    <p>Koi questions hain? Hamen contact karein:</p>
+                    <a href="https://instagram.com/_technical_01" target="_blank">Instagram par Message Karein</a>
+                </div>
+                <div class="last-updated">
+                    <p>Last Updated: December 2024</p>
+                    <p>Technical 01 by Aman Meena</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Technical 01 by Aman Meena. All Rights Reserved.</p>
+        <p style="margin-top: 10px;">
+            <a onclick="showPage('home')">Home</a> | 
+            <a onclick="showPage('about')">About</a> | 
+            <a onclick="showPage('privacy')">Privacy Policy</a>
+        </p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
